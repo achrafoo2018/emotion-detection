@@ -1,0 +1,26 @@
+
+.container {
+  display: flex;      /* Enables flexbox */
+  justify-content: center; /* Centers horizontally */
+  margin-top: 20px;
+  /* margin-bottom: 20px; */
+}
+
+body {
+  font-family: var(--font-family);
+}                                        
+
+
+.card .p-card-title,
+.card .p-card-subtitle,
+.card .content {
+  text-align: center; /* Centers the text within the card */
+}
+
+.card {
+  max-width: 1200px;
+  min-width: 900px;
+  /* padding: 0px; */
+}
+
+
