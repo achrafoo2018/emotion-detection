@@ -53,6 +53,10 @@ function App() {
                 <RadioButton inputId="model3" name="model" value="resnet" onChange={(e) => setModel(e.value)} checked={model === 'resnet'} />
                 <label htmlFor="model3" style={{ marginLeft: '5px' }}>ResNet</label>
               </div>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <RadioButton inputId="model3" name="model" value="custom" onChange={(e) => setModel(e.value)} checked={model === 'custom'} />
+                <label htmlFor="model3" style={{ marginLeft: '5px' }}>Custom</label>
+              </div>
             </div>
           </Card>
         </div>

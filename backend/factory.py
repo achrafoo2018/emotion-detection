@@ -9,6 +9,8 @@ class Factory:
             filename += 'GoogleNet.h5'
         elif filename == 'VGG16':
             filename += 'VGG16.h5'
+        elif type == 'custom':
+            filename += 'Custom.h5'
             
         model = load_model(filename)
         return model
