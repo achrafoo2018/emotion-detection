@@ -5,22 +5,7 @@ import shutil
 import os
 from model_test import classify
 from resize import resize_images
-
-def empty_folder(folder_path):
-    # Get a list of all files in the folder
-    files = os.listdir(folder_path)
-
-    # Iterate over the files and remove them
-    for file in files:
-        file_path = os.path.join(folder_path, file)
-        try:
-            if os.path.isfile(file_path):
-                os.remove(file_path)
-            elif os.path.isdir(file_path):
-                # If you want to empty subfolders as well, you can recursively call the function
-                empty_folder(file_path)
-        except Exception as e:
-            print(f"Error: {e}")
+from helpers import empty_folder
 
 
 app = FastAPI()
@@ -32,10 +17,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-upload_dir = "uploads"
+# Upload section of the API
 
+upload_dir = "uploads"
 @app.post("/upload")
-async def create_upload_file(file: UploadFile = File(...)):
+async def upload_file(file: UploadFile = File(...)):
     try:
         # Create the upload directory if it doesn't exist
         os.makedirs(upload_dir, exist_ok=True)
@@ -65,15 +51,19 @@ async def get_uploaded_files():
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+    
+# Classification section of the API
 
-@app.get("/classify")
-async def model_classify():
-    try:
+@app.post("/classify")
+async def classify_image(req: dict):
+    try:  
         # resize file
-        resize_images(upload_dir, upload_dir, (256, 256))
+        resize_images(upload_dir, upload_dir, (48, 48))
         
+        # Classify the uploaded image
         files = os.listdir(upload_dir)
-        ret = classify(files[0])
+        ret = classify(files[0], req['model'])
         return JSONResponse(content={
             "class_": ret[0],
             "confidence": f"{ret[1]}"

@@ -1,2 +1,5 @@
-venv
-input
+venv/
+node_modules/
+uploads/
+__pycache__/
+input/
