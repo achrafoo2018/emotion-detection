@@ -4,11 +4,11 @@ class Factory:
     def create(self, type: str):
         filename = 'models/'
         if type == 'resnet':
-            filename += 'ResNet.keras'
+            filename += 'ResNet.h5'
         elif type == 'googlenet':
-            filename += 'GoogleNet.keras'
+            filename += 'GoogleNet.h5'
         elif filename == 'VGG16':
-            filename += 'VGG16.keras'
+            filename += 'VGG16.h5'
             
         model = load_model(filename)
         return model

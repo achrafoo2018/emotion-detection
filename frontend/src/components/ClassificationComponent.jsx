@@ -14,7 +14,7 @@ const ClassificationComponent = ({ model }) => {
     console.log("model: ", model);
     setLoading(true);
     setError(null);
-    fetch('http://0.0.0.0:8000/classify', {
+    fetch('http://localhost:8000/classify', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

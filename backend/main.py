@@ -9,12 +9,19 @@ from helpers import empty_folder
 
 
 app = FastAPI()
+# Configuring CORSMiddleware
+origins = [
+    "http://localhost:3000",
+    "localhost:3000",
+    "*"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # You can replace * with specific origins
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["*"]
 )
 
 # Upload section of the API
@@ -71,3 +78,4 @@ async def classify_image(req: dict):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
