@@ -5,9 +5,6 @@ import "./ImageUpload.css"; // Import your custom CSS file
 
 import { Toast } from "primereact/toast";
 import { FileUpload } from "primereact/fileupload";
-import { ProgressBar } from "primereact/progressbar";
-import { Button } from "primereact/button";
-import { Tag } from "primereact/tag";
 
 const ImageUpload = () => {
   const [currentFile, setCurrentFile] = useState(undefined);
